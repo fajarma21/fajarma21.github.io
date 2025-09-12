@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 import Carousel from '@/components/Carousel';
+import Contacts from '@/components/Contacts';
 import useCarouselIntersect from '@/hooks/useCarouselIntersect';
 import useGetData from '@/hooks/useGetData';
 import type { ProjectData } from '@/types';
@@ -26,22 +27,29 @@ const Project = () => {
   if (!project) return <>No data!</>;
 
   return (
-    <Carousel
-      gap={32}
-      padding="0 32px"
-      showLeftShadow={showLeftShadow}
-      showRightShadow={showRightShadow}
-    >
-      {project.map((item, index) => (
-        <div
-          key={item.title}
-          ref={checkRef(index, project.length)}
-          className={css.container}
-        >
-          <Card data={item} />
-        </div>
-      ))}
-    </Carousel>
+    <>
+      <Carousel
+        gap={32}
+        padding="0 32px"
+        showLeftShadow={showLeftShadow}
+        showRightShadow={showRightShadow}
+      >
+        {project.map((item, index) => (
+          <div
+            key={item.title}
+            ref={checkRef(index, project.length)}
+            className={css.container}
+          >
+            <Card data={item} />
+          </div>
+        ))}
+      </Carousel>
+
+      <div className={css.footer}>
+        <Contacts />
+        <p className={css.copy}>© 2025 fajarma</p>
+      </div>
+    </>
   );
 };
 
