@@ -1,4 +1,6 @@
+import { checkIsMobile } from 'fajarma-package';
 import Section from '@/components/Section';
+import useSectionStore from '@/stores/useSection';
 
 import Navbar from './components/Navbar';
 import Experience from './components/Experience';
@@ -6,19 +8,42 @@ import Profile from './components/Profile';
 import Project from './components/Project';
 import css from './View.module.scss';
 
+// TODO: desktop
+// TODO: animation
+// TODOL bg
+
 const App = () => {
+  const isMobile = checkIsMobile();
+  const active = useSectionStore((state) => state.active);
+
+  const list = [
+    {
+      vCenter: true,
+      comp: <Profile />,
+    },
+    {
+      title: 'Experience',
+      comp: <Experience />,
+    },
+    {
+      title: 'Project',
+      comp: <Project isMobile={isMobile} />,
+    },
+  ];
+
   return (
     <div className={css.container}>
-      <Navbar />
-      <Section vCenter>
-        <Profile />
-      </Section>
-      <Section title="Experience">
-        <Experience />
-      </Section>
-      <Section title="Project">
-        <Project />
-      </Section>
+      {active !== 1 && <Navbar />}
+      {list.map((item, index) => (
+        <Section
+          key={`section-${index}`}
+          index={index + 1}
+          vCenter={item.vCenter}
+          title={item.title}
+        >
+          {item.comp}
+        </Section>
+      ))}
     </div>
   );
 };

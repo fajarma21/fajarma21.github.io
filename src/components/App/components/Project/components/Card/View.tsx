@@ -5,10 +5,21 @@ import Preview from './components/Preview';
 import css from './View.module.scss';
 import type { CardProps } from './View.types';
 
-const Card = ({ data }: CardProps) => {
-  const { desc, imageTotal, prefix, repo, stacks, title, url, videoTotal } =
-    data;
+const Card = ({ data, isMobile }: CardProps) => {
+  const {
+    desc,
+    desktopOnly,
+    imageTotal,
+    prefix,
+    repo,
+    stacks,
+    title,
+    url,
+    videoTotal,
+  } = data;
 
+  const desktopUrl = isMobile && desktopOnly;
+  const urlAvailable = !desktopUrl && url;
   const stacksList = stacks.map((item) => JSON.parse(item));
 
   return (
@@ -62,13 +73,13 @@ const Card = ({ data }: CardProps) => {
       <div className={css.btnWrapper}>
         <a
           className={css.liveBtn}
-          href={url || '#!'}
-          aria-disabled={!url}
-          target={url ? '_blank' : ''}
+          href={urlAvailable || '#!'}
+          aria-disabled={!urlAvailable}
+          target={urlAvailable ? '_blank' : ''}
         >
           <div className={css.text}>
-            {url ? <FaLink /> : <FaLinkSlash />}
-            <b>{url || 'Not deployef yet'}</b>
+            {urlAvailable ? <FaLink /> : <FaLinkSlash />}
+            <b>{desktopUrl ? 'Desktop only' : url || 'Not deployef yet'}</b>
           </div>
         </a>
       </div>

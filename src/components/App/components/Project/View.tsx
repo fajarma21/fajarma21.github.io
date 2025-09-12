@@ -9,8 +9,9 @@ import type { ProjectData } from '@/types';
 import Card from './components/Card';
 import { HIDE } from './View.constants';
 import css from './View.module.scss';
+import type { ProjectProps } from './View.types';
 
-const Project = () => {
+const Project = ({ isMobile }: ProjectProps) => {
   const [project, setProject] = useState<ProjectData[] | null>();
 
   const { showLeftShadow, showRightShadow, checkRef } = useCarouselIntersect();
@@ -40,7 +41,7 @@ const Project = () => {
             ref={checkRef(index, project.length)}
             className={css.container}
           >
-            <Card data={item} />
+            <Card data={item} isMobile={isMobile} />
           </div>
         ))}
       </Carousel>
