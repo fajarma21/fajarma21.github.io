@@ -1,13 +1,7 @@
 .container {
   height: 100vh;
+  padding-top: 64px;
   scroll-snap-align: start;
-
-  &[data-vcenter] {
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
 }
 
 .title {
@@ -22,6 +16,13 @@
 }
 
 .content {
-  --contentH: calc(100vh - 116px);
+  --contentH: calc(100vh - 148px);
   height: var(--contentH);
+
+  &[data-vcenter] {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 }
