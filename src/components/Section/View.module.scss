@@ -1,0 +1,28 @@
+.container {
+  height: 100vh;
+  scroll-snap-align: center;
+  padding: 32px 0;
+
+  &[data-vcenter] {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
+.title {
+  padding: 0 32px 0 0;
+  margin-bottom: 32px;
+  h2 {
+    margin: 0;
+    padding: 8px 32px 8px;
+    border-radius: 0 16px 16px 0;
+    background: var(--primary);
+  }
+}
+
+.content {
+  --contentH: calc(100vh - 116px);
+  height: var(--contentH);
+}
