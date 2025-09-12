@@ -1,5 +1,3 @@
-import { useState } from 'react';
-
 import Carousel from '@/components/Carousel';
 import convertFSDate from '@/helpers/convertFSDate';
 import useCarouselIntersect from '@/hooks/useCarouselIntersect';
@@ -9,29 +7,19 @@ import type { ExperienceData } from '@/types';
 import css from './View.module.scss';
 
 const Experience = () => {
-  const [experience, setExperience] = useState<ExperienceData[] | null>();
-
   const { showLeftShadow, showRightShadow, checkRef } = useCarouselIntersect();
 
-  const { loading } = useGetData<ExperienceData>({
+  const { data, loading } = useGetData<ExperienceData>({
     collectionName: 'experience',
-    onCompleted: (data) => {
-      setExperience(data);
-    },
-    skip: !!experience,
   });
 
   if (loading) return <>Loading...</>;
-  if (!experience) return <>No data!</>;
+  if (!data) return <>No data!</>;
 
   return (
     <Carousel showLeftShadow={showLeftShadow} showRightShadow={showRightShadow}>
-      {experience.map(({ id, company, jobs, start, end, title }, index) => (
-        <div
-          key={id}
-          ref={checkRef(index, experience.length)}
-          className={css.item}
-        >
+      {data.map(({ id, company, jobs, start, end, title }, index) => (
+        <div key={id} ref={checkRef(index, data.length)} className={css.item}>
           <div className={css.top}>
             <div className={css.dot} />
           </div>

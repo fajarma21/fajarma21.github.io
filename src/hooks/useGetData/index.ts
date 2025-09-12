@@ -4,7 +4,7 @@ import { collection, getDocs } from 'firebase/firestore/lite';
 import db from '@/firebase';
 
 import type { UseGetDataParams } from './index.types';
-import { MAX_RETRIES } from './index.constants';
+// import { MAX_RETRIES } from './index.constants';
 
 const useGetData = <T>({
   collectionName,
@@ -14,9 +14,11 @@ const useGetData = <T>({
   const [data, setData] = useState<T[] | undefined>(undefined);
   const [loading, setLoading] = useState(false);
 
+  const loadRef = useRef(false);
   const totalHitRef = useRef(0);
 
   const fetchData = useCallback(async () => {
+    loadRef.current = true;
     setLoading(true);
 
     const querySnapshot = await getDocs(collection(db, collectionName));
@@ -33,14 +35,8 @@ const useGetData = <T>({
   }, [collectionName, onCompleted]);
 
   useEffect(() => {
-    if (
-      !collectionName ||
-      data ||
-      skip ||
-      loading ||
-      totalHitRef.current >= MAX_RETRIES
-    )
-      return;
+    if (loadRef.current) return;
+    console.log(collectionName);
     fetchData();
   }, [collectionName, data, fetchData, loading, skip]);
 

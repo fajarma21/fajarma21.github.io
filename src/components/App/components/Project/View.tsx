@@ -1,5 +1,3 @@
-import { useState } from 'react';
-
 import Carousel from '@/components/Carousel';
 import Contacts from '@/components/Contacts';
 import useCarouselIntersect from '@/hooks/useCarouselIntersect';
@@ -12,20 +10,15 @@ import css from './View.module.scss';
 import type { ProjectProps } from './View.types';
 
 const Project = ({ isMobile }: ProjectProps) => {
-  const [project, setProject] = useState<ProjectData[] | null>();
-
   const { showLeftShadow, showRightShadow, checkRef } = useCarouselIntersect();
 
-  const { loading } = useGetData<ProjectData>({
+  const { data, loading } = useGetData<ProjectData>({
     collectionName: 'project',
-    onCompleted: (data) => {
-      setProject(data.filter((item) => !HIDE.includes(item.id)));
-    },
-    skip: !!project,
   });
 
   if (loading) return <>Loading...</>;
-  if (!project) return <>No data!</>;
+  if (!data) return <>No data!</>;
+  const validData = data.filter((item) => !HIDE.includes(item.id));
 
   return (
     <>
@@ -35,10 +28,10 @@ const Project = ({ isMobile }: ProjectProps) => {
         showLeftShadow={showLeftShadow}
         showRightShadow={showRightShadow}
       >
-        {project.map((item, index) => (
+        {validData.map((item, index) => (
           <div
             key={item.title}
-            ref={checkRef(index, project.length)}
+            ref={checkRef(index, validData.length)}
             className={css.container}
           >
             <Card data={item} isMobile={isMobile} />

@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { FaAnglesDown } from 'react-icons/fa6';
 
 import profileImg from '@/assets/profile/profile_square.png';
@@ -10,19 +9,13 @@ import { getName } from './View.helpers';
 import css from './View.module.scss';
 
 const Profile = () => {
-  const [profile, setProfile] = useState<ProfileData>();
-
-  const { loading } = useGetData<ProfileData>({
+  const { data, loading } = useGetData<ProfileData>({
     collectionName: 'profile',
-    onCompleted: (data) => {
-      setProfile(data[0]);
-    },
-    skip: !!profile,
   });
 
   if (loading) return <>Loading...</>;
-  if (!profile) return <>No data!</>;
-  const { name, jobs } = profile;
+  if (!data) return <>No data!</>;
+  const { name, jobs } = data[0];
 
   return (
     <>

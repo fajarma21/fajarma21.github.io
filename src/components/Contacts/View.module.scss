@@ -5,7 +5,10 @@
   gap: 16px;
 
   a {
-    display: block;
     opacity: 0.5;
+
+    svg {
+      display: block;
+    }
   }
 }
