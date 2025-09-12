@@ -35,3 +35,36 @@
     opacity: 0.8;
   }
 }
+
+@keyframes downBtn {
+  0% {
+    opacity: 0;
+  }
+  60% {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  80%,
+  90% {
+    opacity: 0.5;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.down {
+  all: unset;
+  box-sizing: border-box;
+  cursor: pointer;
+  position: absolute;
+  bottom: 16px;
+  left: calc(50% - 32px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 64px;
+  width: 64px;
+  animation: downBtn 5s infinite normal backwards;
+}

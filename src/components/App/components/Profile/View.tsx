@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { FaAnglesDown } from 'react-icons/fa6';
+
 import profileImg from '@/assets/profile/profile_square.png';
 import useGetData from '@/hooks/useGetData';
 import type { ProfileData } from '@/types';
@@ -52,6 +54,10 @@ const Profile = () => {
           </a>
         ))}
       </div>
+
+      <button type="button" className={css.down}>
+        <FaAnglesDown size={32} />
+      </button>
     </>
   );
 };
