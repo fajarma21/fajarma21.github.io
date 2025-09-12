@@ -1,7 +1,6 @@
 .container {
   height: 100vh;
-  scroll-snap-align: center;
-  padding: 32px 0;
+  scroll-snap-align: start;
 
   &[data-vcenter] {
     padding: 0;
