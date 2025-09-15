@@ -9,8 +9,9 @@ import Project from './components/Project';
 import css from './View.module.scss';
 
 // TODO: desktop
+// TODO: lazy
 // TODO: animation
-// TODOL bg
+// TODO: bg
 
 const App = () => {
   const isMobile = checkIsMobile();

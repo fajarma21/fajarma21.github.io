@@ -1,4 +1,6 @@
 import Carousel from '@/components/Carousel';
+import Loading from '@/components/Loading';
+import NoData from '@/components/NoData';
 import convertFSDate from '@/helpers/convertFSDate';
 import useCarouselIntersect from '@/hooks/useCarouselIntersect';
 import useGetData from '@/hooks/useGetData';
@@ -13,8 +15,8 @@ const Experience = () => {
     collectionName: 'experience',
   });
 
-  if (loading) return <>Loading...</>;
-  if (!data) return <>No data!</>;
+  if (loading) return <Loading withContainer />;
+  if (!data) return <NoData withContainer />;
 
   return (
     <Carousel showLeftShadow={showLeftShadow} showRightShadow={showRightShadow}>

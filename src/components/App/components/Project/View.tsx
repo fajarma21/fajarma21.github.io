@@ -1,5 +1,7 @@
 import Carousel from '@/components/Carousel';
 import Contacts from '@/components/Contacts';
+import Loading from '@/components/Loading';
+import NoData from '@/components/NoData';
 import useCarouselIntersect from '@/hooks/useCarouselIntersect';
 import useGetData from '@/hooks/useGetData';
 import type { ProjectData } from '@/types';
@@ -16,8 +18,8 @@ const Project = ({ isMobile }: ProjectProps) => {
     collectionName: 'project',
   });
 
-  if (loading) return <>Loading...</>;
-  if (!data) return <>No data!</>;
+  if (loading) return <Loading withContainer />;
+  if (!data) return <NoData withContainer />;
   const validData = data.filter((item) => !HIDE.includes(item.id));
 
   return (
