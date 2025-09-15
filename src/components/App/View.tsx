@@ -9,7 +9,6 @@ import Project from './components/Project';
 import css from './View.module.scss';
 
 // TODO: desktop
-// TODO: lazy
 // TODO: animation
 // TODO: bg
 
