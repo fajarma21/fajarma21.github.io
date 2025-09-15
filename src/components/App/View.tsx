@@ -4,6 +4,7 @@ import useSectionStore from '@/stores/useSection';
 
 import Navbar from './components/Navbar';
 import Experience from './components/Experience';
+import Footer from './components/Footer';
 import Profile from './components/Profile';
 import Project from './components/Project';
 import css from './View.module.scss';
@@ -44,6 +45,7 @@ const App = () => {
           {item.comp}
         </Section>
       ))}
+      {active === list.length && <Footer />}
     </div>
   );
 };

@@ -1,5 +1,4 @@
 import Carousel from '@/components/Carousel';
-import Contacts from '@/components/Contacts';
 import Loading from '@/components/Loading';
 import NoData from '@/components/NoData';
 import useCarouselIntersect from '@/hooks/useCarouselIntersect';
@@ -23,29 +22,22 @@ const Project = ({ isMobile }: ProjectProps) => {
   const validData = data.filter((item) => !HIDE.includes(item.id));
 
   return (
-    <>
-      <Carousel
-        gap={32}
-        padding="0 32px"
-        showLeftShadow={showLeftShadow}
-        showRightShadow={showRightShadow}
-      >
-        {validData.map((item, index) => (
-          <div
-            key={item.title}
-            ref={checkRef(index, validData.length)}
-            className={css.container}
-          >
-            <Card data={item} isMobile={isMobile} />
-          </div>
-        ))}
-      </Carousel>
-
-      <div className={css.footer}>
-        <Contacts />
-        <p className={css.copy}>© 2025 fajarma</p>
-      </div>
-    </>
+    <Carousel
+      gap={32}
+      padding="0 32px"
+      showLeftShadow={showLeftShadow}
+      showRightShadow={showRightShadow}
+    >
+      {validData.map((item, index) => (
+        <div
+          key={item.title}
+          ref={checkRef(index, validData.length)}
+          className={css.container}
+        >
+          <Card data={item} isMobile={isMobile} />
+        </div>
+      ))}
+    </Carousel>
   );
 };
 
