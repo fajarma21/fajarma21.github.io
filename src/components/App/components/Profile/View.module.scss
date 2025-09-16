@@ -1,0 +1,89 @@
+@use '@/styles/animation.scss' as animation;
+
+@keyframes profileShow {
+  from {
+    opacity: 0;
+    transform: translateY(-50px) rotateY(180deg);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) rotateY(0);
+  }
+}
+
+.container {
+  margin-bottom: 64px;
+}
+
+.profile {
+  padding: 8px;
+  border-radius: 50%;
+  border: 1px dashed var(--primary);
+  border-bottom-width: 0px;
+  animation: profileShow 1s 1 backwards;
+}
+
+.name {
+  text-align: center;
+  margin: 16px 0;
+  @include animation.fadeInBot;
+  animation-delay: 250ms;
+
+  span {
+    font-weight: normal;
+    opacity: 0.5;
+  }
+}
+
+.row {
+  margin-bottom: 32px;
+}
+
+.chip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  padding: 0 16px;
+  border-radius: 16px;
+  background-color: var(--primary);
+  @include animation.fadeInBot;
+}
+
+.contact {
+  @include animation.fadeInBot;
+  animation-delay: 750ms;
+}
+
+@keyframes downBtn {
+  0% {
+    opacity: 0;
+  }
+  60% {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  80%,
+  90% {
+    opacity: 0.5;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.down {
+  all: unset;
+  box-sizing: border-box;
+  cursor: pointer;
+  position: absolute;
+  bottom: 16px;
+  left: calc(50% - 32px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 64px;
+  width: 64px;
+  animation: downBtn 5s infinite normal backwards;
+}

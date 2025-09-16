@@ -1,0 +1,7 @@
+.container {
+  flex: none;
+  width: 80%;
+  max-width: 300px;
+  height: var(--contentH);
+  scroll-snap-align: center;
+}

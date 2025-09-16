@@ -1,0 +1,90 @@
+@use '@/styles/breakpoints.scss' as breakpoint;
+@use '@/styles/animation.scss' as animation;
+
+.item {
+  flex: none;
+  height: var(--contentH);
+  width: 80%;
+  scroll-snap-align: start;
+  --h: 32px;
+  --left: 32px;
+
+  @include breakpoint.width640 {
+    --left: 64px;
+  }
+
+  .top {
+    display: grid;
+    grid-template-columns: var(--left) var(--h) auto;
+    align-items: center;
+    margin-bottom: 24px;
+    @include animation.fadeInLeft;
+    animation-delay: 250ms;
+
+    .dot {
+      height: var(--h);
+      border-radius: 12px;
+      border: 2px solid var(--primary);
+      background: radial-gradient(
+        var(--primary),
+        var(--primary) 25%,
+        transparent 25%
+      );
+    }
+
+    &::before,
+    &::after {
+      content: '';
+      box-sizing: border-box;
+      display: block;
+      height: 2px;
+      border: 1px solid var(--primary);
+    }
+  }
+
+  .content {
+    padding: 0 0 0 var(--left);
+    @include animation.fadeInLeft;
+
+    p {
+      margin: 0;
+      font-size: 0.8rem;
+    }
+
+    .title,
+    .date span {
+      color: var(--dim);
+    }
+
+    .company {
+      margin: 0;
+      color: var(--accent);
+    }
+
+    .jobs {
+      list-style: circle;
+      margin: 24px 0 0;
+      padding: 0 0 0 20px;
+    }
+
+    @include breakpoint.width640 {
+      width: 80%;
+    }
+  }
+
+  &:first-of-type {
+    .top::before {
+      border-style: dashed;
+    }
+  }
+
+  &:last-of-type {
+    width: 100%;
+    .top::after {
+      border-style: dashed;
+    }
+    .content {
+      padding-right: var(--left);
+    }
+  }
+}

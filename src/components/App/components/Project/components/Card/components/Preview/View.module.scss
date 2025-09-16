@@ -1,0 +1,94 @@
+@use '@/styles/breakpoints.scss' as breakpoint;
+
+.wrapper {
+  position: relative;
+  overflow: hidden;
+
+  .arrowBtn {
+    all: unset;
+    cursor: pointer;
+    box-sizing: border-box;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: calc(50% - 24px);
+    width: 48px;
+    height: 48px;
+    text-align: center;
+    border-radius: 50%;
+    background: var(--gray);
+    z-index: 1;
+    transition: transform 200ms;
+    &[data-pos='left'] {
+      left: 12px;
+      transform: translateX(-60px);
+    }
+    &[data-pos='right'] {
+      right: 12px;
+      transform: translateX(60px);
+    }
+    svg {
+      pointer-events: none;
+    }
+
+    &[data-show] {
+      &[data-pos='left'] {
+        transform: translateX(-42px);
+      }
+      &[data-pos='right'] {
+        transform: translateX(42px);
+      }
+    }
+  }
+
+  @include breakpoint.width768 {
+    &:hover .arrowBtn[data-show] {
+      transform: translateX(0);
+    }
+  }
+}
+
+.carousel {
+  overflow-x: auto;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  border-radius: 14px 14px 0 0;
+  margin-bottom: 8px;
+  scroll-snap-type: x mandatory;
+
+  .item {
+    position: relative;
+    flex: none;
+    width: 100%;
+    scroll-snap-align: center;
+
+    .counter {
+      position: absolute;
+      bottom: 0;
+      left: calc(50% - 25px);
+      width: 50px;
+      font-size: 0.8rem;
+      text-align: center;
+      padding: 2px 0;
+      border-radius: 8px 8px 0 0;
+      background-color: var(--gray);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    img,
+    video {
+      display: block;
+    }
+    video {
+      width: 100%;
+    }
+  }
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}

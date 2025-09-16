@@ -1,0 +1,21 @@
+.progress {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  width: 0;
+  height: 1px;
+  background-color: var(--primary);
+  transform: translateX(-50%);
+  transition: width 500ms;
+  z-index: 10;
+}
+
+.container {
+  overflow-y: auto;
+  height: 100vh;
+  scroll-snap-type: y mandatory;
+  scroll-snap-stop: always;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
