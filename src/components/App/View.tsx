@@ -9,8 +9,6 @@ import Profile from './components/Profile';
 import Project from './components/Project';
 import css from './View.module.scss';
 
-// TODO: bg
-
 const App = () => {
   const isMobile = checkIsMobile();
   const active = useSectionStore((state) => state.active);
