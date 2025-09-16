@@ -9,8 +9,6 @@ import Profile from './components/Profile';
 import Project from './components/Project';
 import css from './View.module.scss';
 
-// TODO: desktop
-// TODO: animation
 // TODO: bg
 
 const App = () => {
@@ -35,6 +33,10 @@ const App = () => {
   return (
     <div className={css.container}>
       {active !== 1 && <Navbar />}
+      <div
+        className={css.progress}
+        style={{ width: `${((active - 1) / (list.length - 1)) * 100}%` }}
+      />
       {list.map((item, index) => (
         <Section
           key={`section-${index}`}

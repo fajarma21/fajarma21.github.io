@@ -20,5 +20,6 @@
   border-radius: 50%;
   border: 2px solid;
   border-color: var(--foreground) transparent;
+  opacity: 0.7;
   animation: rotating 1s ease-in-out forwards infinite;
 }

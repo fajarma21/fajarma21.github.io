@@ -4,7 +4,6 @@ import { collection, getDocs } from 'firebase/firestore/lite';
 import db from '@/firebase';
 
 import type { UseGetDataParams } from './index.types';
-// import { MAX_RETRIES } from './index.constants';
 
 const useGetData = <T>({
   collectionName,

@@ -110,8 +110,8 @@
 
       &[aria-disabled='false'] {
         cursor: pointer;
-        color: gold;
-        border-color: gold;
+        color: var(--accent);
+        border-color: var(--accent);
 
         &::before,
         &::after {
@@ -134,12 +134,12 @@
           &::after {
             z-index: 0;
             width: 24px;
-            background-color: gold;
+            background-color: var(--accent);
             transition: width 750ms;
           }
 
           &:hover {
-            color: #6f5d00;
+            color: var(--background);
             transform: scale(1.02);
             &::before {
               left: 100%;
