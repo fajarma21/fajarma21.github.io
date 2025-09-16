@@ -25,7 +25,10 @@ const Experience = () => {
           <div className={css.top}>
             <div className={css.dot} />
           </div>
-          <div className={css.content}>
+          <div
+            className={css.content}
+            style={{ animationDelay: `${index * 250 + 250}ms` }}
+          >
             <p className={css.date}>
               {convertFSDate(start)} - {convertFSDate(end)}{' '}
               {!index && <span>(Latest)</span>}

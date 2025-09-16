@@ -34,14 +34,20 @@ const Profile = () => {
           dangerouslySetInnerHTML={{ __html: getName(name) }}
         />
         <div className={css.row}>
-          {jobs.map((item) => (
-            <div key={item} className={css.chip}>
+          {jobs.map((item, index) => (
+            <div
+              key={item}
+              className={css.chip}
+              style={{ animationDelay: `${index * 250 + 500}ms` }}
+            >
               {item}
             </div>
           ))}
         </div>
 
-        <Contacts />
+        <div className={css.contact}>
+          <Contacts />
+        </div>
       </div>
 
       <button type="button" className={css.down}>

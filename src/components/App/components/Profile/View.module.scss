@@ -1,3 +1,16 @@
+@use '@/styles/animation.scss' as animation;
+
+@keyframes profileShow {
+  from {
+    opacity: 0;
+    transform: translateY(-50px) scale(1.3) rotateY(90deg);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1) rotateY(0);
+  }
+}
+
 .container {
   margin-bottom: 64px;
 }
@@ -7,11 +20,15 @@
   border-radius: 50%;
   border: 1px dashed var(--primary);
   border-bottom-width: 0px;
+  animation: profileShow 2s 1 backwards;
 }
 
 .name {
   text-align: center;
   margin: 16px 0;
+  @include animation.fadeInBot;
+  animation-delay: 250ms;
+
   span {
     font-weight: normal;
     opacity: 0.5;
@@ -30,6 +47,12 @@
   padding: 0 16px;
   border-radius: 16px;
   background-color: var(--primary);
+  @include animation.fadeInBot;
+}
+
+.contact {
+  @include animation.fadeInBot;
+  animation-delay: 750ms;
 }
 
 @keyframes downBtn {

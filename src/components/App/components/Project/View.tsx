@@ -33,6 +33,7 @@ const Project = ({ isMobile }: ProjectProps) => {
           key={item.title}
           ref={checkRef(index, validData.length)}
           className={css.container}
+          style={{ animationDelay: `${index * 250 + 250}ms` }}
         >
           <Card data={item} isMobile={isMobile} />
         </div>

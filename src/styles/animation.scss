@@ -1,0 +1,32 @@
+@keyframes fadeInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@mixin fadeInLeft {
+  animation: fadeInFromLeft 250ms 1 backwards;
+}
+
+@keyframes fadeInFromBot {
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  50% {
+    transform: scale(1.25);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@mixin fadeInBot {
+  animation: fadeInFromBot 1s 1 backwards;
+}

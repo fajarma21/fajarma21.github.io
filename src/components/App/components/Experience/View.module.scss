@@ -1,4 +1,5 @@
-@use '@/styles/breakpoints.scss' as mixin;
+@use '@/styles/breakpoints.scss' as breakpoint;
+@use '@/styles/animation.scss' as animation;
 
 .item {
   flex: none;
@@ -8,7 +9,7 @@
   --h: 32px;
   --left: 32px;
 
-  @include mixin.width640 {
+  @include breakpoint.width640 {
     --left: 64px;
   }
 
@@ -17,6 +18,8 @@
     grid-template-columns: var(--left) var(--h) auto;
     align-items: center;
     margin-bottom: 24px;
+    @include animation.fadeInLeft;
+    animation-delay: 250ms;
 
     .dot {
       height: var(--h);
@@ -41,6 +44,7 @@
 
   .content {
     padding: 0 0 0 var(--left);
+    @include animation.fadeInLeft;
 
     p {
       margin: 0;
@@ -63,7 +67,7 @@
       padding: 0 0 0 20px;
     }
 
-    @include mixin.width640 {
+    @include breakpoint.width640 {
       width: 80%;
     }
   }

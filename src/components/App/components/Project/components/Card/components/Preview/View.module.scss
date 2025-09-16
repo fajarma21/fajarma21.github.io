@@ -1,4 +1,4 @@
-@use '@/styles/breakpoints.scss' as mixin;
+@use '@/styles/breakpoints.scss' as breakpoint;
 
 .wrapper {
   position: relative;
@@ -42,7 +42,7 @@
     }
   }
 
-  @include mixin.width768 {
+  @include breakpoint.width768 {
     &:hover .arrowBtn[data-show] {
       transform: translateX(0);
     }
