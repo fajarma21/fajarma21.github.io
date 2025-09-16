@@ -35,7 +35,6 @@ export interface ExperienceData {
 }
 
 type ProjectPrefix =
-  | 'resume'
   | 'game-cv'
   | 'cvc'
   | 'pokemon'

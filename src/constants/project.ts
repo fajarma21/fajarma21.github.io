@@ -35,8 +35,6 @@ export const PROJECT_KUARTET = 7;
 export const PROJECT_SP_MOCK = 8;
 
 export const PROJECT_ASSETS = {
-  ['resume-thumb']: cvGame1Img,
-  ['resume-1']: cvGame1Img,
   ['game-cv-thumb']: cvGame1Img,
   ['game-cv-1']: cvGame1Img,
   ['cvc-thumb']: cvcThumb,
