@@ -1,6 +1,8 @@
+@use '@/styles/breakpoint.scss' as breakpoint;
+
 .progress {
   position: fixed;
-  top: 0;
+  bottom: 0;
   left: 50%;
   width: 0;
   height: 1px;
@@ -8,6 +10,10 @@
   transform: translateX(-50%);
   transition: width 500ms;
   z-index: 10;
+
+  @include breakpoint.width640 {
+    top: 0;
+  }
 }
 
 .container {

@@ -16,7 +16,14 @@
   background: rgb(36 36 36 / 60%);
   backdrop-filter: blur(5px);
   z-index: 10;
-  animation: show 250ms 1 forwards;
+  opacity: 0;
+  transform: translateY(-50px);
+  transition: all 250ms;
+
+  &[data-show] {
+    opacity: 1;
+    transform: translateY(0);
+  }
 
   .wrapper {
     padding: 8px 32px;

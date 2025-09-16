@@ -74,11 +74,8 @@
 }
 
 .down {
-  all: unset;
-  box-sizing: border-box;
-  cursor: pointer;
   position: absolute;
-  bottom: 16px;
+  bottom: 48px;
   left: calc(50% - 32px);
   display: flex;
   align-items: center;

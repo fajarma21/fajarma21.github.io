@@ -30,7 +30,7 @@ const App = () => {
 
   return (
     <div className={css.container}>
-      {active !== 1 && <Navbar />}
+      <Navbar />
       <div
         className={css.progress}
         style={{ width: `${((active - 1) / (list.length - 1)) * 100}%` }}

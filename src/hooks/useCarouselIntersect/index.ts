@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useIntersect } from 'fajarma-react-lib';
 
 const intersectOptions = {
-  threshold: 0.5,
+  threshold: 0.8,
 };
 
 const useCarouselIntersect = () => {

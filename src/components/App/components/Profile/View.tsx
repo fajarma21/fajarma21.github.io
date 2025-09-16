@@ -50,9 +50,9 @@ const Profile = () => {
         </div>
       </div>
 
-      <button type="button" className={css.down}>
+      <div className={css.down}>
         <FaAnglesDown size={32} />
-      </button>
+      </div>
     </>
   );
 };
