@@ -27,7 +27,8 @@ const Experience = () => {
           </div>
           <div className={css.content}>
             <p className={css.date}>
-              {convertFSDate(start)} - {convertFSDate(end)}
+              {convertFSDate(start)} - {convertFSDate(end)}{' '}
+              {!index && <span>(Latest)</span>}
             </p>
             <h3 className={css.company}>{company}</h3>
             <p className={css.title}>{title}</p>

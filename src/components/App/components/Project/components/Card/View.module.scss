@@ -4,8 +4,8 @@
   height: 430px;
   max-height: calc(100vh - 120px);
   border-radius: 16px;
-  border: 2px solid #393939;
-  background-color: #393939;
+  border: 2px solid var(--gray);
+  background-color: var(--gray);
 
   .wrapper {
     height: 100%;
@@ -121,7 +121,7 @@
         &::before {
           z-index: 1;
           width: 48px;
-          background-color: #393939;
+          background-color: var(--gray);
           transition: all 750ms;
         }
 

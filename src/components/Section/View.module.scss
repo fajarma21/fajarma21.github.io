@@ -1,3 +1,5 @@
+@use '@/styles/breakpoints.scss' as mixin;
+
 .container {
   position: relative;
   height: 100vh;
@@ -6,13 +8,50 @@
 }
 
 .title {
-  padding: 0 32px 0 0;
+  display: flex;
+  align-items: center;
   margin-bottom: 32px;
+
+  &::before,
+  &::after {
+    box-sizing: border-box;
+    display: block;
+    height: 2px;
+    width: 32px;
+    border: 1px dashed var(--gray);
+  }
+
+  &::after {
+    content: '';
+  }
+
   h2 {
+    width: 100%;
     margin: 0;
     padding: 8px 32px 8px;
     border-radius: 0 16px 16px 0;
     background: var(--primary);
+
+    @include mixin.width640 {
+      flex: none;
+      display: inline-block;
+      width: 240px;
+      text-align: center;
+      border-radius: 16px;
+      background: transparent;
+      border: 2px dashed var(--primary);
+    }
+  }
+
+  @include mixin.width640 {
+    margin-top: 10vh;
+    &::before {
+      content: '';
+      width: 100%;
+    }
+    &::after {
+      width: 100%;
+    }
   }
 }
 
@@ -21,9 +60,16 @@
   height: var(--contentH);
 
   &[data-vcenter] {
+    --contentH: calc(100vh - 148px);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+  }
+
+  @include mixin.width768 {
+    margin: 0 auto;
+    width: 768px;
+    --contentH: auto;
   }
 }

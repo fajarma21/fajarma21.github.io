@@ -36,7 +36,6 @@ const useGetData = <T>({
 
   useEffect(() => {
     if (loadRef.current) return;
-    console.log(collectionName);
     fetchData();
   }, [collectionName, data, fetchData, loading, skip]);
 

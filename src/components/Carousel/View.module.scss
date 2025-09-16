@@ -1,9 +1,9 @@
+@use '@/styles/breakpoints.scss' as mixin;
+
 .outer {
   position: relative;
   width: 100%;
   .darkside {
-    pointer-events: none;
-
     &[data-pos='left'] {
       left: 0;
       --l: var(--background);
@@ -14,11 +14,21 @@
       --l: transparent;
       --r: var(--background);
     }
+    &[data-show] {
+      display: block;
+    }
+
+    display: none;
+    pointer-events: none;
     position: absolute;
     top: 0;
     width: 48px;
     height: 100%;
     background: linear-gradient(to right, var(--l), var(--r));
+
+    @include mixin.width768 {
+      display: block;
+    }
   }
 }
 
@@ -30,5 +40,53 @@
 
   &::-webkit-scrollbar {
     display: none;
+  }
+}
+
+.btnWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 16px;
+  padding: 0 32px;
+}
+
+.btnControl {
+  all: unset;
+  box-sizing: border-box;
+  cursor: pointer;
+  position: absolute;
+  top: calc(50% - 24px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  opacity: 0.7;
+  transition: all 250ms;
+
+  &[data-pos='left'] {
+    left: -60px;
+    transform-origin: right;
+  }
+  &[data-pos='right'] {
+    right: -60px;
+    transform-origin: left;
+  }
+
+  svg {
+    display: block;
+    pointer-events: none;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.2;
+  }
+
+  &:hover:not(:disabled) {
+    opacity: 1;
+    transform: scale(1.2);
   }
 }
