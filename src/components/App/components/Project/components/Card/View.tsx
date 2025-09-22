@@ -6,17 +6,7 @@ import css from './View.module.scss';
 import type { CardProps } from './View.types';
 
 const Card = ({ data, isMobile }: CardProps) => {
-  const {
-    desc,
-    desktopOnly,
-    imageTotal,
-    prefix,
-    repo,
-    stacks,
-    title,
-    url,
-    videoTotal,
-  } = data;
+  const { desc, desktopOnly, images, repo, stacks, title, url, videos } = data;
 
   const desktopUrl = isMobile && desktopOnly;
   const urlAvailable = !desktopUrl && url;
@@ -25,12 +15,7 @@ const Card = ({ data, isMobile }: CardProps) => {
   return (
     <div className={css.item}>
       <div className={css.wrapper}>
-        <Preview
-          imageTotal={imageTotal}
-          prefix={prefix}
-          title={title}
-          videoTotal={videoTotal}
-        />
+        <Preview images={images} title={title} videos={videos} />
         <div className={css.content}>
           <h3 className={css.title}>{title}</h3>
           <p className={css.desc}>{desc}</p>
