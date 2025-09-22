@@ -1,6 +1,5 @@
 import { FaAnglesDown } from 'react-icons/fa6';
 
-import profileImg from '@/assets/profile/profile_square.png';
 import Contacts from '@/components/Contacts';
 import Loading from '@/components/Loading';
 import NoData from '@/components/NoData';
@@ -17,13 +16,13 @@ const Profile = () => {
 
   if (loading) return <Loading />;
   if (!data) return <NoData />;
-  const { name, jobs } = data[0];
+  const { name, jobs, photo } = data[0];
 
   return (
     <>
       <div className={css.container}>
         <img
-          src={profileImg}
+          src={photo}
           alt="fajarma picture"
           width={150}
           height={150}

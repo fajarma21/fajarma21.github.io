@@ -2,12 +2,12 @@ import { useRef, useState, type MouseEvent } from 'react';
 import { useIntersect } from 'fajarma-react-lib';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa6';
 
-import { PROJECT_ASSETS } from '@/constants/project';
-
 import css from './View.module.scss';
 import type { PreviewProps } from './View.types';
 
-const Preview = ({ imageTotal, prefix, title, videoTotal }: PreviewProps) => {
+const Preview = ({ images, title, videos }: PreviewProps) => {
+  const imageTotal = images.length;
+  const videoTotal = videos.length;
   const isMultiple = imageTotal > 1;
   const previewLength = videoTotal + imageTotal;
 
@@ -55,10 +55,7 @@ const Preview = ({ imageTotal, prefix, title, videoTotal }: PreviewProps) => {
         </button>
       )}
       <div className={css.carousel} ref={scrollableRef}>
-        {[...Array(videoTotal)].map((_, index) => {
-          const idxName = index + 1;
-          const videoKey =
-            `${prefix}-video-${idxName}` as keyof typeof PROJECT_ASSETS;
+        {videos.map((item, index) => {
           return (
             <div
               key={`video-${index}`}
@@ -69,21 +66,17 @@ const Preview = ({ imageTotal, prefix, title, videoTotal }: PreviewProps) => {
             >
               {previewLength > 1 && (
                 <div className={css.counter}>
-                  {idxName}/{previewLength}
+                  {index + 1}/{previewLength}
                 </div>
               )}
-              <video controls poster={PROJECT_ASSETS[`${prefix}-1`]}>
-                <source src={PROJECT_ASSETS[videoKey]} type="video/mp4" />
+              <video controls poster={images[0]} height={170}>
+                <source src={item} type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
             </div>
           );
         })}
-        {[...Array(imageTotal)].map((_, index) => {
-          const idxName = index + 1;
-          const imgKey = `${prefix}-${idxName}` as keyof typeof PROJECT_ASSETS;
-          const imgUrl = PROJECT_ASSETS[imgKey];
-
+        {images.map((item, index) => {
           const imgIdx = videoTotal + index;
           return (
             <div
@@ -102,8 +95,13 @@ const Preview = ({ imageTotal, prefix, title, videoTotal }: PreviewProps) => {
                   {imgIdx + 1} / {previewLength}
                 </div>
               )}
-              <a href={imgUrl} target="_blank">
-                <img src={imgUrl} alt={`${title}-${index}`} width="100%" />
+              <a href={item} target="_blank">
+                <img
+                  src={item}
+                  alt={`${title}-${index}`}
+                  width="100%"
+                  height={170}
+                />
               </a>
             </div>
           );
