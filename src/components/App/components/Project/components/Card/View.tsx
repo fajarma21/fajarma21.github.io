@@ -64,7 +64,7 @@ const Card = ({ data, isMobile }: CardProps) => {
         >
           <div className={css.text}>
             {urlAvailable ? <FaLink /> : <FaLinkSlash />}
-            <b>{desktopUrl ? 'Desktop only' : url || 'Not deployef yet'}</b>
+            <b>{desktopUrl ? 'Desktop only' : url || 'Not deployed yet'}</b>
           </div>
         </a>
       </div>
