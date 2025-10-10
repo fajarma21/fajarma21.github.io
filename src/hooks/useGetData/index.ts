@@ -1,5 +1,11 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { collection, getDocs } from 'firebase/firestore/lite';
+import {
+  query,
+  collection,
+  orderBy as firestoreOrderBy,
+  getDocs,
+  type DocumentData,
+} from 'firebase/firestore/lite';
 
 import db from '@/firebase';
 
@@ -7,6 +13,7 @@ import type { UseGetDataParams } from './index.types';
 
 const useGetData = <T>({
   collectionName,
+  orderBy,
   skip,
   onCompleted,
 }: UseGetDataParams<T[]>) => {
@@ -20,18 +27,24 @@ const useGetData = <T>({
     loadRef.current = true;
     setLoading(true);
 
-    const querySnapshot = await getDocs(collection(db, collectionName));
-    if (!querySnapshot.empty) {
-      const dataDB = querySnapshot.docs.map(
-        (doc) => ({ autoId: doc.id, ...doc.data() } as T)
-      );
-      setData(dataDB);
-      if (onCompleted) onCompleted(dataDB);
-    }
+    const dataRef = collection(db, collectionName);
+    const queryArgs: Parameters<typeof query<DocumentData, DocumentData>> = [
+      dataRef,
+    ];
+    if (orderBy) queryArgs.push(firestoreOrderBy(orderBy[0], orderBy[1]));
+
+    const q = query(...queryArgs);
+    const querySnapshot = await getDocs(q);
+    const dataDB = querySnapshot.docs.map(
+      (doc) => ({ autoId: doc.id, ...doc.data() } as T)
+    );
+
+    setData(dataDB);
+    if (onCompleted) onCompleted(dataDB);
 
     setLoading(false);
     totalHitRef.current += 1;
-  }, [collectionName, onCompleted]);
+  }, [collectionName, onCompleted, orderBy]);
 
   useEffect(() => {
     if (loadRef.current) return;
