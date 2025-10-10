@@ -15,6 +15,7 @@ const Project = ({ isMobile }: ProjectProps) => {
 
   const { data, loading } = useGetData<ProjectData>({
     collectionName: 'project',
+    orderBy: ['order', 'asc'],
   });
 
   if (loading) return <Loading withContainer />;

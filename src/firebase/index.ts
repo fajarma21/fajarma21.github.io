@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app';
-import { initializeFirestore } from 'firebase/firestore/lite';
+import { getFirestore } from 'firebase/firestore/lite';
 
 import {
   FS_API_KEY,
@@ -21,6 +21,6 @@ const firebaseApp = initializeApp({
   measurementId: FS_MEASUREMENT_ID,
 });
 
-const firestore = initializeFirestore(firebaseApp, {});
+const firestore = getFirestore(firebaseApp);
 
 export default firestore;
