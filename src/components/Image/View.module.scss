@@ -1,0 +1,28 @@
+@keyframes rotating {
+  from {
+    rotate: 0;
+  }
+  to {
+    rotate: 360deg;
+  }
+}
+
+.container {
+  position: relative;
+
+  img {
+    display: block;
+  }
+}
+
+.loader {
+  position: absolute;
+  top: calc(50% - 15px);
+  left: calc(50% - 15px);
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 2px solid var(--foreground);
+  border-left-color: transparent;
+  animation: rotating 1s linear infinite;
+}

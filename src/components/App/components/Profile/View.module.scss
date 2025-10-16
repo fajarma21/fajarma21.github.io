@@ -16,12 +16,15 @@
 }
 
 .profile {
-  display: block;
-  padding: 8px;
   border-radius: 50%;
   border: 1px dashed var(--primary);
   border-bottom-width: 0px;
   animation: profileShow 1s 1 backwards;
+
+  img {
+    padding: 8px;
+    border-radius: 50%;
+  }
 }
 
 .name {
