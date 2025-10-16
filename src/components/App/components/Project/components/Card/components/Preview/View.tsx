@@ -2,6 +2,8 @@ import { useRef, useState, type MouseEvent } from 'react';
 import { useIntersect } from 'fajarma-react-lib';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa6';
 
+import Image from '@/components/Image';
+
 import css from './View.module.scss';
 import type { PreviewProps } from './View.types';
 
@@ -96,7 +98,7 @@ const Preview = ({ images, title, videos }: PreviewProps) => {
                 </div>
               )}
               <a href={item} target="_blank">
-                <img
+                <Image
                   src={item}
                   alt={`${title}-${index}`}
                   width="100%"

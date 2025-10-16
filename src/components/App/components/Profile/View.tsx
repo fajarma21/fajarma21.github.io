@@ -1,6 +1,7 @@
 import { FaAnglesDown } from 'react-icons/fa6';
 
 import Contacts from '@/components/Contacts';
+import Image from '@/components/Image';
 import Loading from '@/components/Loading';
 import NoData from '@/components/NoData';
 import useGetData from '@/hooks/useGetData';
@@ -21,7 +22,7 @@ const Profile = () => {
   return (
     <>
       <div className={css.container}>
-        <img
+        <Image
           src={photo}
           alt="fajarma picture"
           width={150}
