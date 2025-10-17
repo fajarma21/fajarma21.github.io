@@ -2,10 +2,10 @@
 
 @keyframes shining {
   from {
-    bottom: 0%;
+    bottom: 100%;
   }
   to {
-    bottom: 100%;
+    bottom: 0%;
   }
 }
 
@@ -45,18 +45,13 @@
   &::before {
     content: '';
     position: absolute;
-    bottom: 0%;
+    bottom: 100%;
     left: 0;
     width: 100%;
-    height: 30%;
-    opacity: 0.5;
-    background: linear-gradient(
-      to bottom,
-      transparent,
-      var(--primary),
-      transparent
-    );
-    animation: shining linear 10s 10s infinite;
+    height: 50%;
+    opacity: 0.75;
+    background: radial-gradient(var(--primary), transparent 70%);
+    animation: shining linear 5s 5s infinite;
   }
 
   &::after {
@@ -66,7 +61,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: url('../../assets/bg-pattern.svg') top / 200px repeat,
-      linear-gradient(to bottom, transparent, var(--background) 40%);
+    background: url('../../assets/bg-pattern.png') top / 200px repeat,
+      linear-gradient(to bottom, transparent, var(--background) 50%);
   }
 }
