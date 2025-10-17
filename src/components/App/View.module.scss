@@ -61,6 +61,7 @@
     left: 0;
     width: 100%;
     height: 100%;
+    filter: blur(2px);
     background: url('../../assets/bg-pattern.png') top / 200px repeat,
       linear-gradient(to bottom, transparent, var(--background) 50%);
   }
