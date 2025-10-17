@@ -29,24 +29,27 @@ const App = () => {
   ];
 
   return (
-    <div className={css.container}>
-      <Navbar />
-      <div
-        className={css.progress}
-        style={{ width: `${((active - 1) / (list.length - 1)) * 100}%` }}
-      />
-      {list.map((item, index) => (
-        <Section
-          key={`section-${index}`}
-          index={index + 1}
-          vCenter={item.vCenter}
-          title={item.title}
-        >
-          {item.comp}
-        </Section>
-      ))}
-      {active === list.length && <Footer />}
-    </div>
+    <>
+      <div className={css.backgroundGroup} />
+      <div className={css.container}>
+        <Navbar />
+        <div
+          className={css.progress}
+          style={{ width: `${((active - 1) / (list.length - 1)) * 100}%` }}
+        />
+        {list.map((item, index) => (
+          <Section
+            key={`section-${index}`}
+            index={index + 1}
+            vCenter={item.vCenter}
+            title={item.title}
+          >
+            {item.comp}
+          </Section>
+        ))}
+        {active === list.length && <Footer />}
+      </div>
+    </>
   );
 };
 

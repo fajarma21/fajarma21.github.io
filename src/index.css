@@ -11,9 +11,8 @@
   font-weight: 400;
   color-scheme: light dark;
   color: var(--foreground);
-  background: url('assets/bg-pattern.svg') top / 200px repeat,
-    linear-gradient(to bottom, var(--bgGradient), var(--background) 40%);
-  background-color: var(--background);
+
+  background-color: var(--bgGradient);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;

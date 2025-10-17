@@ -1,5 +1,14 @@
 @use '@/styles/breakpoint.scss' as breakpoint;
 
+@keyframes shining {
+  from {
+    bottom: 100%;
+  }
+  to {
+    bottom: 0%;
+  }
+}
+
 .progress {
   position: fixed;
   bottom: 0;
@@ -23,5 +32,37 @@
   scroll-snap-stop: always;
   &::-webkit-scrollbar {
     display: none;
+  }
+}
+
+.backgroundGroup {
+  z-index: -1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  &::before {
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    opacity: 0.75;
+    background: radial-gradient(var(--primary), transparent 70%);
+    animation: shining linear 5s 5s infinite;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    filter: blur(2px);
+    background: url('../../assets/bg-pattern.png') top / 200px repeat,
+      linear-gradient(to bottom, transparent, var(--background) 50%);
   }
 }
