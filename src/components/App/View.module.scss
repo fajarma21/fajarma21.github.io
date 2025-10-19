@@ -1,10 +1,11 @@
 @use '@/styles/breakpoint.scss' as breakpoint;
 
 @keyframes shining {
-  from {
+  0% {
     bottom: 100%;
   }
-  to {
+  70%,
+  100% {
     bottom: 0%;
   }
 }
@@ -49,9 +50,9 @@
     left: 0;
     width: 100%;
     height: 50%;
-    opacity: 0.75;
+    opacity: 0.7;
     background: radial-gradient(var(--primary), transparent 70%);
-    animation: shining linear 5s 5s infinite;
+    animation: shining linear 6s 1800ms infinite;
   }
 
   &::after {
@@ -62,7 +63,7 @@
     width: 100%;
     height: 100%;
     filter: blur(2px);
-    background: url('../../assets/bg-pattern.png') top / 200px repeat,
+    background: url('../../assets/bg-pattern.png') center top repeat,
       linear-gradient(to bottom, transparent, var(--background) 50%);
   }
 }

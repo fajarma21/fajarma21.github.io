@@ -25,7 +25,12 @@ const Image = ({
 
   return (
     <div className={`${css.container} ${className}`}>
-      <img {...props} onLoad={handleOnload} onError={handleOnError} />
+      <img
+        {...props}
+        style={{ filter: isLoading ? 'blur(3px)' : 'none' }}
+        onLoad={handleOnload}
+        onError={handleOnError}
+      />
       {isLoading && <div className={css.loader} />}
     </div>
   );
