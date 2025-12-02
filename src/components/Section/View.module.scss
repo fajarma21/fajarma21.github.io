@@ -34,9 +34,16 @@
 
 .container {
   position: relative;
-  height: 100vh;
+  min-height: 100vh;
   padding-top: 64px;
   scroll-snap-align: start;
+  z-index: 1;
+
+  .detector {
+    position: absolute;
+    top: 300px;
+    left: 50%;
+  }
 }
 
 .title {
@@ -73,6 +80,21 @@
     }
   }
 
+  &[data-sticky] {
+    position: sticky;
+    top: 64px;
+    z-index: 10;
+    @include breakpoint.width640 {
+      top: 80px;
+
+      h2 {
+        outline: 4px solid #242424;
+        background-color: #242424;
+        backdrop-filter: blur(5px);
+      }
+    }
+  }
+
   @include breakpoint.width640 {
     justify-content: center;
     margin-top: 10vh;
@@ -84,11 +106,8 @@
 }
 
 .content {
-  --contentH: calc(100vh - 148px);
-  height: var(--contentH);
-
   &[data-vcenter] {
-    --contentH: calc(100vh - 148px);
+    height: calc(100vh - 148px);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -98,6 +117,5 @@
   @include breakpoint.width768 {
     margin: 0 auto;
     width: 768px;
-    --contentH: auto;
   }
 }
