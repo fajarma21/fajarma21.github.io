@@ -19,12 +19,17 @@ const App = () => {
       comp: <Profile />,
     },
     {
-      title: 'Experience',
+      title: 'Experiences',
       comp: <Experience />,
     },
     {
-      title: 'Project',
-      comp: <Project isMobile={isMobile} />,
+      title: 'Projects',
+      stickyTitle: true,
+      comp: (
+        <Project isMobile={isMobile}>
+          <Footer />
+        </Project>
+      ),
     },
   ];
 
@@ -37,17 +42,11 @@ const App = () => {
           className={css.progress}
           style={{ width: `${((active - 1) / (list.length - 1)) * 100}%` }}
         />
-        {list.map((item, index) => (
-          <Section
-            key={`section-${index}`}
-            index={index + 1}
-            vCenter={item.vCenter}
-            title={item.title}
-          >
-            {item.comp}
+        {list.map(({ comp, ...resItem }, index) => (
+          <Section key={`section-${index}`} index={index + 1} {...resItem}>
+            {comp}
           </Section>
         ))}
-        {active === list.length && <Footer />}
       </div>
     </>
   );

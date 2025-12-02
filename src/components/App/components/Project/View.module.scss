@@ -1,7 +1,21 @@
+@use '@/styles/breakpoint.scss' as breakpoint;
+
 .container {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  flex-wrap: wrap;
+  gap: 32px;
+}
+
+.itemWrapper {
   flex: none;
   width: 80%;
   max-width: 300px;
-  height: var(--contentH);
-  scroll-snap-align: center;
+}
+
+.end {
+  text-align: center;
+  margin: 0;
+  color: var(--dim);
 }
