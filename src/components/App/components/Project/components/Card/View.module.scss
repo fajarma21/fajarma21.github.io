@@ -17,7 +17,7 @@
   border: 2px solid var(--gray);
   background-color: var(--gray);
   scale: 0.5;
-  transition: scale 500ms;
+  transition: scale 500ms 50ms;
 
   &[data-visible] {
     scale: 1 1;
