@@ -25,6 +25,7 @@ const Section = ({
       if (!intersected) setIntersected(true);
     }
   });
+
   return (
     <section className={css.container}>
       <div ref={ref} className={css.detector} />

@@ -1,15 +1,13 @@
 .footer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 4px;
   padding: 32px 0;
+  &[data-mobile-mode] {
+    padding-bottom: 96px;
+  }
 
   .copy {
     font-size: 0.8rem;
     text-align: center;
-    margin: 0;
+    margin: 4px 0 0;
     opacity: 0.5;
   }
 }

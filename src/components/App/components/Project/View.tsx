@@ -1,14 +1,18 @@
+import { checkIsMobile } from 'fajarma-package';
+
 import Loading from '@/components/Loading';
 import NoData from '@/components/NoData';
 import useGetData from '@/hooks/useGetData';
 import type { ProjectData } from '@/types';
 
+import Footer from '../Footer';
 import Card from './components/Card';
 import { HIDE } from './View.constants';
 import css from './View.module.scss';
-import type { ProjectProps } from './View.types';
 
-const Project = ({ children, isMobile }: ProjectProps) => {
+const Project = () => {
+  const isMobile = checkIsMobile();
+
   const { data, loading } = useGetData<ProjectData>({
     collectionName: 'project',
     orderBy: ['order', 'asc'],
@@ -26,11 +30,11 @@ const Project = ({ children, isMobile }: ProjectProps) => {
             <Card data={item} isMobile={isMobile} />
           </div>
         ))}
-        {!!validData.length && (
-          <p className={css.end}>--- There will be more later ---</p>
-        )}
       </div>
-      {children}
+      {!!validData.length && (
+        <p className={css.end}>--- There will be more later ---</p>
+      )}
+      <Footer isMobile={isMobile} />
     </>
   );
 };
