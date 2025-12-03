@@ -21,12 +21,8 @@ const Project = ({ children, isMobile }: ProjectProps) => {
   return (
     <>
       <div className={css.container}>
-        {validData.map((item, index) => (
-          <div
-            key={item.title}
-            className={css.itemWrapper}
-            style={{ animationDelay: `${index * 250 + 250}ms` }}
-          >
+        {validData.map((item) => (
+          <div key={item.title} className={css.itemWrapper}>
             <Card data={item} isMobile={isMobile} />
           </div>
         ))}
