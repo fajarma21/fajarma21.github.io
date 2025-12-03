@@ -7,6 +7,8 @@ import Image from '@/components/Image';
 import css from './View.module.scss';
 import type { PreviewProps } from './View.types';
 
+const intersectOpt = { threshold: 0.05 };
+
 const Preview = ({ images, title, videos }: PreviewProps) => {
   const imageTotal = images.length;
   const videoTotal = videos.length;
@@ -16,8 +18,6 @@ const Preview = ({ images, title, videos }: PreviewProps) => {
   const scrollableRef = useRef<HTMLDivElement>(null);
   const [leftIntersecting, setLeftIntersecting] = useState(false);
   const [rightIntersecting, setRightIntersecting] = useState(false);
-
-  const intersectOpt = { threshold: 0.05 };
 
   const { ref: leftRef } = useIntersect<HTMLDivElement>(
     (value) => setLeftIntersecting(value),
