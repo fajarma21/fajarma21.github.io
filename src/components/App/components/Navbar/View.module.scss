@@ -33,13 +33,3 @@
     gap: 12px;
   }
 }
-
-.container {
-  overflow-y: auto;
-  height: 100vh;
-  scroll-snap-type: y mandatory;
-  scroll-snap-stop: always;
-  &::-webkit-scrollbar {
-    display: none;
-  }
-}
