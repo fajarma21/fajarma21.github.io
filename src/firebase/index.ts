@@ -1,4 +1,5 @@
 import { initializeApp } from 'firebase/app';
+import { getAnalytics } from 'firebase/analytics';
 import { getFirestore } from 'firebase/firestore/lite';
 
 import {
@@ -22,5 +23,6 @@ const firebaseApp = initializeApp({
 });
 
 const firestore = getFirestore(firebaseApp);
+export const analytics = getAnalytics(firebaseApp);
 
 export default firestore;

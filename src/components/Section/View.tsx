@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useIntersect } from 'fajarma-react-lib';
 
 import useSectionStore from '@/stores/useSection';
+import { trackerImpressionSection } from '@/trackers';
 
 import css from './View.module.scss';
 import type { SectionProps } from './View.types';
@@ -16,13 +17,16 @@ const Section = ({
   const [intersected, setIntersected] = useState(false);
 
   const updateActiveSection = useSectionStore(
-    (state) => state.updateActiveSection
+    (state) => state.updateActiveSection,
   );
 
   const { ref } = useIntersect<HTMLDivElement>((value) => {
     if (value) {
       updateActiveSection(index);
-      if (!intersected) setIntersected(true);
+      if (!intersected) {
+        setIntersected(true);
+        trackerImpressionSection(title || `Section ${index}`);
+      }
     }
   });
 

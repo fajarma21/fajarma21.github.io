@@ -20,29 +20,48 @@ const Experience = () => {
 
   return (
     <Carousel showLeftShadow={showLeftShadow} showRightShadow={showRightShadow}>
-      {data.map(({ id, company, jobs, start, end, title }, index) => (
-        <div key={id} ref={checkRef(index, data.length)} className={css.item}>
-          <div className={css.top}>
-            <div className={css.dot} />
+      {data.map(
+        (
+          {
+            id,
+            company,
+            jobDesc,
+            jobDescStacks,
+            jobDescTools,
+            start,
+            end,
+            title,
+          },
+          index,
+        ) => (
+          <div key={id} ref={checkRef(index, data.length)} className={css.item}>
+            <div className={css.top}>
+              <div className={css.dot} />
+            </div>
+            <div
+              className={css.content}
+              style={{ animationDelay: `${index * 250 + 250}ms` }}
+            >
+              <p className={css.date}>
+                {convertFSDate(start)} - {convertFSDate(end)}
+              </p>
+              <h3 className={css.company}>{company}</h3>
+              <p className={css.title}>{title}</p>
+              <ul className={css.jobs}>
+                {jobDesc.map((item, index) => (
+                  <li key={`job-${index}`}>{item}</li>
+                ))}
+                <li>
+                  <span>Stacks:</span> <em>{jobDescStacks}</em>
+                </li>
+                <li>
+                  <span>Tools:</span> <em>{jobDescTools}</em>
+                </li>
+              </ul>
+            </div>
           </div>
-          <div
-            className={css.content}
-            style={{ animationDelay: `${index * 250 + 250}ms` }}
-          >
-            <p className={css.date}>
-              {convertFSDate(start)} - {convertFSDate(end)}{' '}
-              {!index && <span>(Latest)</span>}
-            </p>
-            <h3 className={css.company}>{company}</h3>
-            <p className={css.title}>{title}</p>
-            <ul className={css.jobs}>
-              {jobs.map((item, index) => (
-                <li key={`job-${index}`}>{item}</li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      ))}
+        ),
+      )}
     </Carousel>
   );
 };
