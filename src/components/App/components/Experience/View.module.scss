@@ -65,6 +65,10 @@
       list-style: circle;
       margin: 24px 0 0;
       padding: 0 0 0 20px;
+
+      li span {
+        opacity: 0.5;
+      }
     }
 
     @include breakpoint.width640 {
