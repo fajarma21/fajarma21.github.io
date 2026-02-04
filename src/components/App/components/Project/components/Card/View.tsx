@@ -7,7 +7,7 @@ import {
   FaLink,
   FaLinkSlash,
 } from 'react-icons/fa6';
-import { ProjectCard, useIntersect } from 'fajarma-react-lib';
+import { FMProjectCard, useIntersect } from 'fajarma-react-lib';
 
 import Preview from './components/Preview';
 import css from './View.module.scss';
@@ -22,7 +22,7 @@ const Card = ({ data, isMobile }: CardProps) => {
 
   return (
     <div ref={ref} className={css.cardModifier}>
-      <ProjectCard
+      <FMProjectCard
         {...data}
         icon={{
           collapse: <FaChevronUp />,

@@ -6,7 +6,7 @@ import type { FooterProps } from './View.types';
 const Footer = ({ isMobile }: FooterProps) => {
   return (
     <div className={css.footer} data-mobile-mode={isMobile || undefined}>
-      <Contacts />
+      <Contacts tooltipPosition="top" />
       <p className={css.copy}>© 2025 fajarma</p>
     </div>
   );

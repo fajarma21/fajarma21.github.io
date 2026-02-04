@@ -32,3 +32,7 @@ a {
   color: var(--foreground);
   text-decoration: inherit;
 }
+
+.fm-tooltip {
+  font-size: 0.8rem;
+}
