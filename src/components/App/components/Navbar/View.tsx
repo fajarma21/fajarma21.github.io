@@ -1,5 +1,4 @@
-import Nav from 'fajarma-react-lib/dist/fajarma/Nav';
-
+import { FMTitle } from 'fajarma-react-lib';
 import useSectionStore from '@/stores/useSection';
 
 import css from './View.module.scss';
@@ -10,7 +9,7 @@ const Navbar = () => {
   return (
     <header className={css.header} data-show={active !== 1 || undefined}>
       <div className={css.wrapper}>
-        <Nav links={[]} />
+        <FMTitle />
       </div>
     </header>
   );

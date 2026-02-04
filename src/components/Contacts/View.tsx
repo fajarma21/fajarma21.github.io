@@ -1,18 +1,12 @@
+import { FMContacts } from 'fajarma-react-lib';
+
 import { LINKS } from './View.constants';
-import css from './View.module.scss';
+import type { ContactsProps } from './View.types';
 
-// TODO: add tooltip
+const Contacts = ({ tooltipPosition = 'bottom' }: ContactsProps) => {
+  const tooltipOffset = tooltipPosition === 'top' ? { top: -20 } : { top: 50 };
 
-const Contacts = () => {
-  return (
-    <div className={css.container}>
-      {LINKS.map((item, index) => (
-        <a key={`link-${index}`} href={item.url} target="_blank">
-          {item.icon}
-        </a>
-      ))}
-    </div>
-  );
+  return <FMContacts links={LINKS} tooltipOffset={tooltipOffset} />;
 };
 
 export default Contacts;

@@ -14,7 +14,7 @@
     "@types/loadable__component": "^5.13.9",
     "dayjs": "^1.11.13",
     "fajarma-package": "^1.1.0",
-    "fajarma-react-lib": "^1.4.0",
+    "fajarma-react-lib": "^1.5.2",
     "firebase": "^12.2.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
