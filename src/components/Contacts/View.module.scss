@@ -1,0 +1,18 @@
+.contact {
+  :global(.fm-tooltip) {
+    left: 50%;
+
+    transform: translateX(-50%);
+  }
+
+  &.bottom {
+    :global(.fm-tooltip) {
+      top: calc(100% + 8px);
+    }
+  }
+  &.top {
+    :global(.fm-tooltip) {
+      bottom: calc(100% + 8px);
+    }
+  }
+}
