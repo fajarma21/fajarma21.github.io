@@ -1,8 +1,6 @@
 import { useRef, useState, type MouseEvent } from 'react';
-import { useIntersect } from 'fajarma-react-lib';
+import { FMImage, useIntersect } from 'fajarma-react-lib';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa6';
-
-import Image from '@/components/Image';
 
 import css from './View.module.scss';
 import type { PreviewProps } from './View.types';
@@ -21,11 +19,11 @@ const Preview = ({ images, title, videos }: PreviewProps) => {
 
   const { ref: leftRef } = useIntersect<HTMLDivElement>(
     (value) => setLeftIntersecting(value),
-    intersectOpt
+    intersectOpt,
   );
   const { ref: rightRef } = useIntersect<HTMLDivElement>(
     (value) => setRightIntersecting(value),
-    intersectOpt
+    intersectOpt,
   );
 
   const handleClickArrow = (e: MouseEvent) => {
@@ -87,8 +85,8 @@ const Preview = ({ images, title, videos }: PreviewProps) => {
                 !imgIdx
                   ? leftRef
                   : imgIdx === previewLength - 1
-                  ? rightRef
-                  : null
+                    ? rightRef
+                    : null
               }
               className={css.item}
             >
@@ -98,7 +96,7 @@ const Preview = ({ images, title, videos }: PreviewProps) => {
                 </div>
               )}
               <a href={item} target="_blank">
-                <Image
+                <FMImage
                   src={item}
                   alt={`${title}-${index}`}
                   width="100%"

@@ -6,6 +6,7 @@
   --foreground: rgba(255, 255, 255, 0.87);
   --background: #242424;
   --bgGradient: #1b1b1b;
+  --loader-color: var(--foreground);
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;

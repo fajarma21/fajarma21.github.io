@@ -31,12 +31,12 @@ export interface ExperienceData {
   company: string;
   desc: string;
   end?: FirebaseDate;
-  title: string;
-  start: FirebaseDate;
-  url: string;
   jobDesc: string[];
   jobDescStacks: string;
   jobDescTools: string;
+  title: string;
+  start: FirebaseDate;
+  url: string;
 }
 
 export interface ProjectData {
