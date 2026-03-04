@@ -4,11 +4,16 @@ import css from './View.module.scss';
 import { LINKS } from './View.constants';
 import type { ContactsProps } from './View.types';
 
-const Contacts = ({ tooltipPosition = 'bottom' }: ContactsProps) => {
+const Contacts = ({
+  cv,
+  email,
+  linkedin,
+  tooltipPosition = 'bottom',
+}: ContactsProps) => {
   return (
     <FMContacts
       className={`${css.contact} ${css[tooltipPosition]}`}
-      links={LINKS}
+      links={LINKS(cv, email, linkedin)}
     />
   );
 };

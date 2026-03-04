@@ -17,7 +17,7 @@ const Profile = () => {
 
   if (loading) return <Loading />;
   if (!data) return <NoData />;
-  const { name, jobs, photo } = data[0];
+  const { cvUrl, email, linkedinUrl, name, jobs, photo } = data[0];
 
   return (
     <>
@@ -46,7 +46,7 @@ const Profile = () => {
         </div>
 
         <div className={css.contact}>
-          <Contacts />
+          <Contacts cv={cvUrl} email={email} linkedin={linkedinUrl} />
         </div>
       </div>
 
