@@ -1,19 +1,19 @@
 import { FaClipboardUser, FaLinkedin, FaSquareEnvelope } from 'react-icons/fa6';
 
-export const LINKS = [
+export const LINKS = (cv: string, email: string, linkedin: string) => [
   {
     icon: <FaLinkedin size={24} />,
-    url: 'https://linkedin.com/in/fajarma',
+    url: `https://${linkedin}`,
     tooltip: 'Visit my LinkedIn',
   },
   {
     icon: <FaSquareEnvelope size={24} />,
-    url: 'mailto:fajarma21@gmail.com',
+    url: `mailto:${email}`,
     tooltip: 'Send me an email',
   },
   {
     icon: <FaClipboardUser size={24} />,
-    url: 'https://wkkfnusxohjljpjotkcv.supabase.co/storage/v1/object/public/profile/Fajar%20Maulana_CV.pdf',
+    url: cv,
     tooltip: 'Download my CV',
   },
 ];

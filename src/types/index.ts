@@ -6,9 +6,12 @@ export interface FirebaseDate {
 }
 
 export interface ProfileData {
+  cvUrl: string;
   dob: FirebaseDate;
+  email: string;
   interest: string[];
   jobs: string[];
+  linkedinUrl: string;
   name: string;
   photo: string;
   prefix: string;
