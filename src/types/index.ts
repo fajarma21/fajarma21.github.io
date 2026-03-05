@@ -5,6 +5,12 @@ export interface FirebaseDate {
   seconds: number;
 }
 
+export interface ContactData {
+  cvUrl: string;
+  email: string;
+  linkedinUrl: string;
+}
+
 export interface ProfileData {
   cvUrl: string;
   dob: FirebaseDate;

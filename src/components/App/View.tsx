@@ -1,4 +1,6 @@
 import Section from '@/components/Section';
+import useGetData from '@/hooks/useGetData';
+import useContactStore from '@/stores/useContact';
 import useSectionStore from '@/stores/useSection';
 
 import Navbar from './components/Navbar';
@@ -6,9 +8,18 @@ import Experience from './components/Experience';
 import Profile from './components/Profile';
 import Project from './components/Project';
 import css from './View.module.scss';
+import { ContactData } from '@/types';
 
 const App = () => {
   const active = useSectionStore((state) => state.active);
+  const updateContact = useContactStore((state) => state.updateContact);
+
+  useGetData<ContactData>({
+    collectionName: 'contact',
+    onCompleted: (data) => {
+      updateContact(data[0]);
+    },
+  });
 
   const list = [
     {
