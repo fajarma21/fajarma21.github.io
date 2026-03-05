@@ -1,9 +1,10 @@
+import type { ContactData } from '@/types';
 import { FaClipboardUser, FaLinkedin, FaSquareEnvelope } from 'react-icons/fa6';
 
-export const LINKS = (cv: string, email: string, linkedin: string) => [
+export const LINKS = ({ cvUrl, email, linkedinUrl }: ContactData) => [
   {
     icon: <FaLinkedin size={24} />,
-    url: `https://${linkedin}`,
+    url: `https://${linkedinUrl}`,
     tooltip: 'Visit my LinkedIn',
   },
   {
@@ -13,7 +14,7 @@ export const LINKS = (cv: string, email: string, linkedin: string) => [
   },
   {
     icon: <FaClipboardUser size={24} />,
-    url: cv,
+    url: cvUrl,
     tooltip: 'Download my CV',
   },
 ];
