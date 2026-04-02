@@ -54,6 +54,7 @@ export interface ProjectData {
   id: number;
   images: string[];
   repo: string[];
+  show: boolean;
   stacks: string[];
   thumbnail: string;
   title: string;
