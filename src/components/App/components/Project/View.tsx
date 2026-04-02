@@ -20,7 +20,7 @@ const Project = () => {
 
   if (loading) return <Loading withContainer />;
   if (!data) return <NoData withContainer />;
-  const validData = data.filter((item) => !HIDE.includes(item.id));
+  const validData = data.filter((item) => !HIDE.includes(item.id) && item.show);
 
   return (
     <>
