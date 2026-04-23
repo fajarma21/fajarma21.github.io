@@ -1,3 +1,5 @@
+import { useLayoutEffect } from 'react';
+
 import Section from '@/components/Section';
 import useGetData from '@/hooks/useGetData';
 import useContactStore from '@/stores/useContact';
@@ -31,27 +33,30 @@ const App = () => {
       comp: <Experience />,
     },
     {
+      isWide: true,
       title: 'Projects',
       stickyTitle: true,
       comp: <Project />,
     },
   ];
 
+  useLayoutEffect(() => {
+    window.history.scrollRestoration = 'manual';
+  }, []);
+
   return (
     <>
       <Navbar />
       <div className={css.backgroundGroup} />
-      <div className={css.container}>
-        <div
-          className={css.progress}
-          style={{ width: `${((active - 1) / (list.length - 1)) * 100}%` }}
-        />
-        {list.map(({ comp, ...resItem }, index) => (
-          <Section key={`section-${index}`} index={index + 1} {...resItem}>
-            {comp}
-          </Section>
-        ))}
-      </div>
+      <div
+        className={css.progress}
+        style={{ width: `${((active - 1) / (list.length - 1)) * 100}%` }}
+      />
+      {list.map(({ comp, ...resItem }, index) => (
+        <Section key={`section-${index}`} index={index + 1} {...resItem}>
+          {comp}
+        </Section>
+      ))}
     </>
   );
 };

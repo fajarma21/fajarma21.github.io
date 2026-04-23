@@ -8,3 +8,8 @@
     @content;
   }
 }
+@mixin width1024 {
+  @media only screen and (min-width: 1024px) {
+    @content;
+  }
+}
