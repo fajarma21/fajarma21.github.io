@@ -9,6 +9,7 @@ import type { SectionProps } from './View.types';
 const Section = ({
   children,
   index,
+  isWide,
   title,
   stickyTitle,
   vCenter,
@@ -36,7 +37,11 @@ const Section = ({
               <h2>{title}</h2>
             </div>
           )}
-          <div className={css.content} data-vcenter={vCenter || undefined}>
+          <div
+            className={css.content}
+            data-vcenter={vCenter || undefined}
+            data-wide={isWide || undefined}
+          >
             {children}
           </div>
         </>

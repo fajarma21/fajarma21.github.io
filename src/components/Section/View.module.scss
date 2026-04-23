@@ -36,7 +36,6 @@
   position: relative;
   min-height: 100vh;
   padding-top: 64px;
-  scroll-snap-align: start;
   z-index: 1;
 
   .detector {
@@ -117,5 +116,11 @@
   @include breakpoint.width768 {
     margin: 0 auto;
     width: 768px;
+  }
+
+  &[data-wide] {
+    @include breakpoint.width1024 {
+      width: 1024px;
+    }
   }
 }
