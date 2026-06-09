@@ -95,14 +95,12 @@ const Preview = ({ images, title, videos }: PreviewProps) => {
                   {imgIdx + 1} / {previewLength}
                 </div>
               )}
-              <a href={item} target="_blank">
-                <FMImage
-                  src={item}
-                  alt={`${title}-${index}`}
-                  width="100%"
-                  height={170}
-                />
-              </a>
+              <FMImage
+                src={item}
+                alt={`${title}-${index}`}
+                width="100%"
+                height={170}
+              />
             </div>
           );
         })}

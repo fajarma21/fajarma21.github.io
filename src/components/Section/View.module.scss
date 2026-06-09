@@ -46,6 +46,7 @@
 }
 
 .title {
+  pointer-events: none;
   display: flex;
   align-items: center;
   margin-bottom: 32px;
