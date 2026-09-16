@@ -6,6 +6,7 @@ import useCarouselIntersect from '@/hooks/useCarouselIntersect';
 import useGetData from '@/hooks/useGetData';
 import type { ExperienceData } from '@/types';
 
+import KeySkills from './components/KeySkills';
 import css from './View.module.scss';
 
 const Experience = () => {
@@ -19,50 +20,61 @@ const Experience = () => {
   if (!data) return <NoData withContainer />;
 
   return (
-    <Carousel showLeftShadow={showLeftShadow} showRightShadow={showRightShadow}>
-      {data.map(
-        (
-          {
-            id,
-            company,
-            jobDesc,
-            jobDescStacks,
-            jobDescTools,
-            start,
-            end,
-            title,
-          },
-          index,
-        ) => (
-          <div key={id} ref={checkRef(index, data.length)} className={css.item}>
-            <div className={css.top}>
-              <div className={css.dot} />
-            </div>
+    <>
+      <KeySkills />
+
+      <Carousel
+        showLeftShadow={showLeftShadow}
+        showRightShadow={showRightShadow}
+      >
+        {data.map(
+          (
+            {
+              id,
+              company,
+              jobDesc,
+              jobDescStacks,
+              jobDescTools,
+              start,
+              end,
+              title,
+            },
+            index,
+          ) => (
             <div
-              className={css.content}
-              style={{ animationDelay: `${index * 250 + 250}ms` }}
+              key={id}
+              ref={checkRef(index, data.length)}
+              className={css.item}
             >
-              <p className={css.date}>
-                {convertFSDate(start)} - {convertFSDate(end)}
-              </p>
-              <h3 className={css.company}>{company}</h3>
-              <p className={css.title}>{title}</p>
-              <ul className={css.jobs}>
-                {jobDesc.map((item, index) => (
-                  <li key={`job-${index}`}>{item}</li>
-                ))}
-                <li>
-                  <span>Stacks:</span> <em>{jobDescStacks}</em>
-                </li>
-                <li>
-                  <span>Tools:</span> <em>{jobDescTools}</em>
-                </li>
-              </ul>
+              <div className={css.top}>
+                <div className={css.dot} />
+              </div>
+              <div
+                className={css.content}
+                style={{ animationDelay: `${index * 250 + 250}ms` }}
+              >
+                <p className={css.date}>
+                  {convertFSDate(start)} - {convertFSDate(end)}
+                </p>
+                <h3 className={css.company}>{company}</h3>
+                <p className={css.title}>{title}</p>
+                <ul className={css.jobs}>
+                  {jobDesc.map((item, index) => (
+                    <li key={`job-${index}`}>{item}</li>
+                  ))}
+                  <li>
+                    <span>Stacks:</span> <em>{jobDescStacks}</em>
+                  </li>
+                  <li>
+                    <span>Tools:</span> <em>{jobDescTools}</em>
+                  </li>
+                </ul>
+              </div>
             </div>
-          </div>
-        ),
-      )}
-    </Carousel>
+          ),
+        )}
+      </Carousel>
+    </>
   );
 };
 
