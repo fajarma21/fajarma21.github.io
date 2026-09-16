@@ -5,14 +5,18 @@ import Contacts from '@/components/Contacts';
 import Loading from '@/components/Loading';
 import NoData from '@/components/NoData';
 import useGetData from '@/hooks/useGetData';
+import useKeySkillsStore from '@/stores/useKeySkills';
 import type { ProfileData } from '@/types';
 
 import { getName } from './View.helpers';
 import css from './View.module.scss';
 
 const Profile = () => {
+  const updateSkills = useKeySkillsStore((state) => state.updateSkills);
+
   const { data, loading } = useGetData<ProfileData>({
     collectionName: 'profile',
+    onCompleted: (rawData) => updateSkills(rawData[0].skills),
   });
 
   if (loading) return <Loading />;

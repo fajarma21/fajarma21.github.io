@@ -1,0 +1,78 @@
+@use '@/styles/animation.scss' as animation;
+@use '@/styles/breakpoint.scss' as breakpoint;
+
+@keyframes marquee {
+  from {
+    transform: translateX(-25%);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 16px;
+  margin-bottom: 16px;
+  font-size: 0.8rem;
+  padding: 0 32px;
+  overflow: hidden;
+  @include animation.fadeInLeft;
+
+  @include breakpoint.width640 {
+    padding: 0 64px;
+  }
+
+  .skills {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 8px;
+    white-space: nowrap;
+    .skill {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 32px;
+    }
+    .dot {
+      opacity: 0.5;
+    }
+
+    &[data-marquee] {
+      animation: marquee 20s 1s linear infinite backwards;
+    }
+
+    @include breakpoint.width640 {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+
+  .darkside {
+    &[data-pos='left'] {
+      left: 0;
+      --l: var(--background);
+      --r: transparent;
+    }
+    &[data-pos='right'] {
+      right: 0;
+      --l: transparent;
+      --r: var(--background);
+    }
+
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    width: 64px;
+    height: 100%;
+    background: linear-gradient(to right, var(--l), var(--r));
+
+    @include breakpoint.width640 {
+      width: 128px;
+    }
+  }
+}
