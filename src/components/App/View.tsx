@@ -1,4 +1,4 @@
-import { useLayoutEffect, type CSSProperties } from 'react';
+import { useLayoutEffect, useRef, type CSSProperties } from 'react';
 
 import Section from '@/components/Section';
 import useGetData from '@/hooks/useGetData';
@@ -13,12 +13,11 @@ import css from './View.module.scss';
 import { ContactData } from '@/types';
 import usePageScroll from '@/hooks/usePageScroll';
 
-// TODO: handle touch scroll
-
 const App = () => {
   const active = useSectionStore((state) => state.active);
   const updateContact = useContactStore((state) => state.updateContact);
 
+  const containerRef = useRef<HTMLDivElement>(null);
   const windowH = window.innerHeight;
 
   useGetData<ContactData>({
@@ -45,7 +44,9 @@ const App = () => {
     },
   ];
 
-  const { currentPage } = usePageScroll({ pageLength: list.length });
+  const { currentPage, handleTransitionEnd } = usePageScroll({
+    pageLength: list.length,
+  });
 
   useLayoutEffect(() => {
     window.history.scrollRestoration = 'manual';
@@ -60,6 +61,7 @@ const App = () => {
         style={{ width: `${((active - 1) / (list.length - 1)) * 100}%` }}
       />
       <div
+        ref={containerRef}
         className={css.container}
         style={
           {
@@ -67,6 +69,7 @@ const App = () => {
             transform: `translateY(${currentPage * -windowH}px)`,
           } as CSSProperties
         }
+        onTransitionEnd={handleTransitionEnd}
       >
         {list.map(({ comp, ...resItem }, index) => (
           <Section key={`section-${index}`} index={index + 1} {...resItem}>

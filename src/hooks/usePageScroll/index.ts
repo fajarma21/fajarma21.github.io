@@ -1,4 +1,10 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  type TransitionEvent,
+} from 'react';
 
 import type { UsePageScrollParams } from './index.types';
 
@@ -7,8 +13,25 @@ const usePageScroll = ({ pageLength }: UsePageScrollParams) => {
   const touchstartY = useRef<number>(undefined);
   const isScrolling = useRef(false);
 
+  const handleTransitionEnd = (e: TransitionEvent) => {
+    if (e.target !== e.currentTarget) return;
+    isScrolling.current = false;
+  };
+
   const scrollLogic = useCallback(
     (target: HTMLElement, deltaY: number) => {
+      let newIndex = currentPage;
+      if (deltaY > 0) newIndex++;
+      else if (deltaY < 0) newIndex--;
+
+      if (
+        Math.abs(deltaY) < 10 ||
+        isScrolling.current ||
+        newIndex < 0 ||
+        newIndex > pageLength - 1
+      )
+        return;
+
       const scrollableChild = target.closest('[data-scrollable="true"]');
       if (scrollableChild) {
         const scrollTop = scrollableChild.scrollTop;
@@ -21,17 +44,8 @@ const usePageScroll = ({ pageLength }: UsePageScrollParams) => {
         if (scrollBetween || (!scrollBetween && Math.abs(deltaY) < 30)) return;
       }
 
-      if (Math.abs(deltaY) < 10 || isScrolling.current) return;
-
-      let newIndex = currentPage;
-      if (deltaY > 0) newIndex++;
-      else if (deltaY < 0) newIndex--;
-
       isScrolling.current = true;
-      setCurrentPage(Math.min(Math.max(newIndex, 0), pageLength - 1));
-      setTimeout(() => {
-        isScrolling.current = false;
-      }, 1000);
+      setCurrentPage(newIndex);
     },
     [currentPage, pageLength],
   );
@@ -77,7 +91,7 @@ const usePageScroll = ({ pageLength }: UsePageScrollParams) => {
     };
   }, [handleTouchMove, handleTouchStart, handleWheel]);
 
-  return { currentPage };
+  return { currentPage, handleTransitionEnd };
 };
 
 export default usePageScroll;
