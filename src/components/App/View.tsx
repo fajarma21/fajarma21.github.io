@@ -13,7 +13,6 @@ import css from './View.module.scss';
 import { ContactData } from '@/types';
 import usePageScroll from '@/hooks/usePageScroll';
 
-// TODO: scroll shadow
 // TODO: handle touch scroll
 
 const App = () => {

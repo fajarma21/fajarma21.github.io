@@ -1,10 +1,8 @@
 import type { ReactNode } from 'react';
 
-export interface SectionProps {
+export interface ContentWrapperProps {
   children: ReactNode;
-  index: number;
   scrollable?: boolean;
-  title?: string;
   vCenter?: boolean;
   wide?: boolean;
 }

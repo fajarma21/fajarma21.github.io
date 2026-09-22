@@ -3,17 +3,12 @@ import { useIntersect } from 'fajarma-react-lib';
 
 import useSectionStore from '@/stores/useSection';
 
+import ContentWrapper from './components/ContentWrapper';
+import ScrollableContent from './components/ScrollableContent';
 import css from './View.module.scss';
 import type { SectionProps } from './View.types';
 
-const Section = ({
-  children,
-  index,
-  wide,
-  title,
-  scrollable,
-  vCenter,
-}: SectionProps) => {
+const Section = ({ children, index, title, ...contentProps }: SectionProps) => {
   const [intersected, setIntersected] = useState(false);
 
   const updateActiveSection = useSectionStore(
@@ -37,14 +32,12 @@ const Section = ({
               <h2>{title}</h2>
             </div>
           )}
-          <div
-            className={css.content}
-            data-wide={wide || undefined}
-            data-vcenter={vCenter || undefined}
-            data-scrollable={scrollable || undefined}
-          >
-            {children}
-          </div>
+
+          {contentProps.scrollable ? (
+            <ScrollableContent {...contentProps}>{children}</ScrollableContent>
+          ) : (
+            <ContentWrapper {...contentProps}>{children}</ContentWrapper>
+          )}
         </>
       )}
     </section>
