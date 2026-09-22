@@ -9,9 +9,9 @@ import type { SectionProps } from './View.types';
 const Section = ({
   children,
   index,
-  isWide,
+  wide,
   title,
-  stickyTitle,
+  scrollable,
   vCenter,
 }: SectionProps) => {
   const [intersected, setIntersected] = useState(false);
@@ -33,14 +33,15 @@ const Section = ({
       {intersected && (
         <>
           {title && (
-            <div className={css.title} data-sticky={stickyTitle || undefined}>
+            <div className={css.title}>
               <h2>{title}</h2>
             </div>
           )}
           <div
             className={css.content}
+            data-wide={wide || undefined}
             data-vcenter={vCenter || undefined}
-            data-wide={isWide || undefined}
+            data-scrollable={scrollable || undefined}
           >
             {children}
           </div>

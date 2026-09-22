@@ -34,7 +34,7 @@ const Project = () => {
       {!!validData.length && (
         <p className={css.end}>--- There will be more later ---</p>
       )}
-      <Footer isMobile={isMobile} />
+      <Footer />
     </>
   );
 };

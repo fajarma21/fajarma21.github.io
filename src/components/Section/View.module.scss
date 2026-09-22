@@ -34,7 +34,7 @@
 
 .container {
   position: relative;
-  min-height: 100vh;
+  min-height: var(--windowH);
   padding-top: 64px;
   z-index: 1;
 
@@ -80,21 +80,6 @@
     }
   }
 
-  &[data-sticky] {
-    position: sticky;
-    top: 64px;
-    z-index: 10;
-    @include breakpoint.width640 {
-      top: 80px;
-
-      h2 {
-        outline: 4px solid #242424;
-        background-color: #242424;
-        backdrop-filter: blur(5px);
-      }
-    }
-  }
-
   @include breakpoint.width640 {
     justify-content: center;
     margin-top: 10vh;
@@ -120,8 +105,27 @@
   }
 
   &[data-wide] {
-    @include breakpoint.width1024 {
-      width: 1024px;
+    width: 100%;
+    > div {
+      @include breakpoint.width1024 {
+        margin: 0 auto;
+        width: 1024px;
+      }
+    }
+  }
+
+  &[data-scrollable] {
+    --hDiff: 148px;
+    overflow: auto;
+
+    @include breakpoint.width768 {
+      --hDiff: 245px;
+    }
+
+    height: calc(var(--windowH) - var(--hDiff));
+
+    &::-webkit-scrollbar {
+      display: none;
     }
   }
 }

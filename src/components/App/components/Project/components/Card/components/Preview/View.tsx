@@ -54,7 +54,7 @@ const Preview = ({ images, title, videos }: PreviewProps) => {
           <FaChevronLeft />
         </button>
       )}
-      <div className={css.carousel} ref={scrollableRef}>
+      <div className={css.carousel} ref={scrollableRef} data-scrollable={true}>
         {videos.map((item, index) => {
           return (
             <div

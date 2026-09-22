@@ -1,4 +1,4 @@
-import { useLayoutEffect } from 'react';
+import { useLayoutEffect, type CSSProperties } from 'react';
 
 import Section from '@/components/Section';
 import useGetData from '@/hooks/useGetData';
@@ -11,10 +11,16 @@ import Profile from './components/Profile';
 import Project from './components/Project';
 import css from './View.module.scss';
 import { ContactData } from '@/types';
+import usePageScroll from '@/hooks/usePageScroll';
+
+// TODO: scroll shadow
+// TODO: handle touch scroll
 
 const App = () => {
   const active = useSectionStore((state) => state.active);
   const updateContact = useContactStore((state) => state.updateContact);
+
+  const windowH = window.innerHeight;
 
   useGetData<ContactData>({
     collectionName: 'contact',
@@ -33,12 +39,14 @@ const App = () => {
       comp: <Experience />,
     },
     {
-      isWide: true,
       title: 'Projects',
-      stickyTitle: true,
+      scrollable: true,
+      wide: true,
       comp: <Project />,
     },
   ];
+
+  const { currentPage } = usePageScroll({ pageLength: list.length });
 
   useLayoutEffect(() => {
     window.history.scrollRestoration = 'manual';
@@ -52,11 +60,21 @@ const App = () => {
         className={css.progress}
         style={{ width: `${((active - 1) / (list.length - 1)) * 100}%` }}
       />
-      {list.map(({ comp, ...resItem }, index) => (
-        <Section key={`section-${index}`} index={index + 1} {...resItem}>
-          {comp}
-        </Section>
-      ))}
+      <div
+        className={css.container}
+        style={
+          {
+            '--windowH': windowH ? `${windowH}px` : '100vh',
+            transform: `translateY(${currentPage * -windowH}px)`,
+          } as CSSProperties
+        }
+      >
+        {list.map(({ comp, ...resItem }, index) => (
+          <Section key={`section-${index}`} index={index + 1} {...resItem}>
+            {comp}
+          </Section>
+        ))}
+      </div>
     </>
   );
 };
