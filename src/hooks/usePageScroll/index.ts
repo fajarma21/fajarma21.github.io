@@ -7,11 +7,19 @@ import {
 } from 'react';
 
 import type { UsePageScrollParams } from './index.types';
+import { SCROLL_CHILD_BUFFER } from './index.constants';
+import { useResizeObserver } from 'fajarma-react-lib';
 
 const usePageScroll = ({ pageLength }: UsePageScrollParams) => {
   const [currentPage, setCurrentPage] = useState(0);
   const touchstartY = useRef<number>(undefined);
   const isScrolling = useRef(false);
+
+  const handleSizeChange = useCallback(() => {
+    setCurrentPage(0);
+  }, []);
+
+  const { ref } = useResizeObserver<HTMLDivElement>(handleSizeChange);
 
   const handleTransitionEnd = (e: TransitionEvent) => {
     if (e.target !== e.currentTarget) return;
@@ -38,10 +46,16 @@ const usePageScroll = ({ pageLength }: UsePageScrollParams) => {
         const scrollHeight = scrollableChild.scrollHeight;
         const height = scrollableChild.clientHeight;
 
-        const scrollBetween =
-          scrollTop > 0 && scrollTop + height + 1 < scrollHeight;
+        const onTop = scrollTop <= 0;
+        const onBottom = scrollTop + height + 1 >= scrollHeight;
+        const scrollBetween = !onTop && !onBottom;
 
-        if (scrollBetween || (!scrollBetween && Math.abs(deltaY) < 30)) return;
+        if (
+          scrollBetween ||
+          (onTop && !onBottom && deltaY > -SCROLL_CHILD_BUFFER) ||
+          (!onTop && onBottom && deltaY < SCROLL_CHILD_BUFFER)
+        )
+          return;
       }
 
       isScrolling.current = true;
@@ -91,7 +105,7 @@ const usePageScroll = ({ pageLength }: UsePageScrollParams) => {
     };
   }, [handleTouchMove, handleTouchStart, handleWheel]);
 
-  return { currentPage, handleTransitionEnd };
+  return { sizeRef: ref, currentPage, handleTransitionEnd };
 };
 
 export default usePageScroll;

@@ -2,7 +2,7 @@
 
 .content {
   &[data-vcenter] {
-    height: calc(100vh - 148px);
+    height: calc(var(--windowH) - 148px);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -29,7 +29,7 @@
     overflow: auto;
 
     @include breakpoint.width768 {
-      --hDiff: 245px;
+      --hDiff: calc(var(--titleMTop) + 152px);
     }
 
     height: calc(var(--windowH) - var(--hDiff));

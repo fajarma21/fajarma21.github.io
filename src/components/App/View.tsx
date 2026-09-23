@@ -1,4 +1,4 @@
-import { useLayoutEffect, useRef, type CSSProperties } from 'react';
+import { useLayoutEffect, type CSSProperties } from 'react';
 
 import Section from '@/components/Section';
 import useGetData from '@/hooks/useGetData';
@@ -16,9 +16,6 @@ import usePageScroll from '@/hooks/usePageScroll';
 const App = () => {
   const active = useSectionStore((state) => state.active);
   const updateContact = useContactStore((state) => state.updateContact);
-
-  const containerRef = useRef<HTMLDivElement>(null);
-  const windowH = window.innerHeight;
 
   useGetData<ContactData>({
     collectionName: 'contact',
@@ -44,7 +41,7 @@ const App = () => {
     },
   ];
 
-  const { currentPage, handleTransitionEnd } = usePageScroll({
+  const { sizeRef, currentPage, handleTransitionEnd } = usePageScroll({
     pageLength: list.length,
   });
 
@@ -61,12 +58,12 @@ const App = () => {
         style={{ width: `${((active - 1) / (list.length - 1)) * 100}%` }}
       />
       <div
-        ref={containerRef}
+        ref={sizeRef}
         className={css.container}
         style={
           {
-            '--windowH': windowH ? `${windowH}px` : '100vh',
-            transform: `translateY(${currentPage * -windowH}px)`,
+            '--windowH': '100svh',
+            transform: `translateY(calc(${-currentPage} * var(--windowH)))`,
           } as CSSProperties
         }
         onTransitionEnd={handleTransitionEnd}
