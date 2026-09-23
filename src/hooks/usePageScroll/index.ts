@@ -6,13 +6,13 @@ import {
   type TransitionEvent,
 } from 'react';
 
-import type { UsePageScrollParams } from './index.types';
+import type { TouchStart, UsePageScrollParams } from './index.types';
 import { SCROLL_CHILD_BUFFER } from './index.constants';
 import { useResizeObserver } from 'fajarma-react-lib';
 
 const usePageScroll = ({ pageLength }: UsePageScrollParams) => {
   const [currentPage, setCurrentPage] = useState(0);
-  const touchstartY = useRef<number>(undefined);
+  const touchstart = useRef<TouchStart>(undefined);
   const isScrolling = useRef(false);
 
   const handleSizeChange = useCallback(() => {
@@ -76,15 +76,22 @@ const usePageScroll = ({ pageLength }: UsePageScrollParams) => {
   );
 
   const handleTouchStart = useCallback((e: TouchEvent) => {
-    touchstartY.current = e.touches[0].clientY;
+    const touch = e.touches[0];
+    touchstart.current = {
+      x: touch.clientX,
+      y: touch.clientY,
+    };
   }, []);
 
   const handleTouchMove = useCallback(
     (e: TouchEvent) => {
       if (e.cancelable) e.preventDefault();
-      if (!touchstartY.current || !(e.target instanceof HTMLElement)) return;
-      const deltaY = (e.touches[0].clientY - touchstartY.current) * -1;
+      if (!touchstart.current || !(e.target instanceof HTMLElement)) return;
+      const touch = e.touches[0];
+      const deltaY = (touch.clientY - touchstart.current.y) * -1;
+      const deltaX = touch.clientX - touchstart.current.x;
 
+      if (Math.abs(deltaX) > Math.abs(deltaY)) return;
       scrollLogic(e.target, deltaY);
     },
     [scrollLogic],
