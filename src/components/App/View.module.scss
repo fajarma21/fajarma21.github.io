@@ -58,3 +58,7 @@
       linear-gradient(to bottom, transparent, var(--background) 50%);
   }
 }
+
+.container {
+  transition: all 1s;
+}

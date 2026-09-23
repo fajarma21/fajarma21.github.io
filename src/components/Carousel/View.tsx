@@ -33,6 +33,7 @@ const Carousel = ({
         className={css.container}
         style={{ padding, gap }}
         ref={scrollableRef}
+        data-scrollable={true}
       >
         {children}
       </div>

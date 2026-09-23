@@ -1,11 +1,10 @@
 import Contacts from '@/components/Contacts';
 
 import css from './View.module.scss';
-import type { FooterProps } from './View.types';
 
-const Footer = ({ isMobile }: FooterProps) => {
+const Footer = () => {
   return (
-    <div className={css.footer} data-mobile-mode={isMobile || undefined}>
+    <div className={css.footer}>
       <Contacts tooltipPosition="top" />
       <p className={css.copy}>© 2025 fajarma</p>
     </div>

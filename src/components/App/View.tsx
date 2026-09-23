@@ -1,4 +1,4 @@
-import { useLayoutEffect } from 'react';
+import { useLayoutEffect, type CSSProperties } from 'react';
 
 import Section from '@/components/Section';
 import useGetData from '@/hooks/useGetData';
@@ -11,6 +11,7 @@ import Profile from './components/Profile';
 import Project from './components/Project';
 import css from './View.module.scss';
 import { ContactData } from '@/types';
+import usePageScroll from '@/hooks/usePageScroll';
 
 const App = () => {
   const active = useSectionStore((state) => state.active);
@@ -33,12 +34,16 @@ const App = () => {
       comp: <Experience />,
     },
     {
-      isWide: true,
       title: 'Projects',
-      stickyTitle: true,
+      scrollable: true,
+      wide: true,
       comp: <Project />,
     },
   ];
+
+  const { sizeRef, currentPage, handleTransitionEnd } = usePageScroll({
+    pageLength: list.length,
+  });
 
   useLayoutEffect(() => {
     window.history.scrollRestoration = 'manual';
@@ -52,11 +57,23 @@ const App = () => {
         className={css.progress}
         style={{ width: `${((active - 1) / (list.length - 1)) * 100}%` }}
       />
-      {list.map(({ comp, ...resItem }, index) => (
-        <Section key={`section-${index}`} index={index + 1} {...resItem}>
-          {comp}
-        </Section>
-      ))}
+      <div
+        ref={sizeRef}
+        className={css.container}
+        style={
+          {
+            '--windowH': '100svh',
+            transform: `translateY(calc(${-currentPage} * var(--windowH)))`,
+          } as CSSProperties
+        }
+        onTransitionEnd={handleTransitionEnd}
+      >
+        {list.map(({ comp, ...resItem }, index) => (
+          <Section key={`section-${index}`} index={index + 1} {...resItem}>
+            {comp}
+          </Section>
+        ))}
+      </div>
     </>
   );
 };
